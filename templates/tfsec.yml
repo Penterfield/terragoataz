@@ -1,7 +1,7 @@
 steps:
-- script: |
+- bash: |
     mkdir TFSecReport
-    docker pull liamg/tfsec
+    docker pull liamg/tfsec:latest
     docker run --rm -t -v $(System.DefaultWorkingDirectory):/src liamg/tfsec ./src -–format JUnit > $(System.DefaultWorkingDirectory)/TFSecReport/junit.xml
   displayName: 'TFSec Static Code Analysis'
   
