@@ -1,6 +1,7 @@
 # azure-pipelines.yml
 
-trigger: master
+trigger: 
+- master
 
 # pr:
 # - checkov
