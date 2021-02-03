@@ -1,4 +1,20 @@
 steps:
 - script: |
-    docker run -t -v $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf
+    mkdir CheckovReport
+    docker pull bridgecrew/checkov
+    docker run -t -v $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/Checkov-Report.xml
   displayName: 'Checkov Static Code Analysis'
+          
+- task: PublishTestResults@2
+  displayName: Publish Checkov Test Results
+  condition: succeededorFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/*Checkov-Report.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/CheckovReport'
+    mergeTestResults: false
+    testRunTitle: Checkov Scan
+    failTaskOnFailedTests: false
+    publishRunAttachments: true
+
+
