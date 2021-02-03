@@ -13,7 +13,7 @@ stages:
 
   - stage: Scan
     jobs:
-    - job: 'IaC Checkov Scan' 
+    - job: 
       steps:
       - template: templates/checkov.yml
       
