@@ -17,8 +17,3 @@ steps:
     failTaskOnFailedTests: false
     publishRunAttachments: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: Checkov
-    artifactName: checkovresults
-

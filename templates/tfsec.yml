@@ -1,0 +1,18 @@
+steps:
+- script: |
+    mkdir TFSecReport
+    docker pull liamg/tfsec
+    docker run --volume $(System.DefaultWorkingDirectory):/src liamg/tfsec ./src –format JUnit > $(System.DefaultWorkingDirectory)/TFSecReport/TFSec-Report.xml
+  displayName: 'TFSec Static Code Analysis'
+  
+- task: PublishTestResults@2
+  displayName: Publish TFSec Test Results
+  condition: succeededorFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TFSec-Report.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/TFSecReport'
+    mergeTestResults: false
+    testRunTitle: Checkov Scan
+    failTaskOnFailedTests: false
+    publishRunAttachments: true
