@@ -1,0 +1,19 @@
+# azure-pipelines.yml
+
+trigger: master
+
+# pr:
+# - checkov
+
+pool:
+  vmImage: 'ubuntu-latest'
+  
+stages:
+
+  - stage: Scan
+    jobs:
+    - job: 'IaC Checkov Scan' 
+      steps:
+      - template: checkov.yml
+      
+    

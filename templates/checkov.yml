@@ -1,0 +1,4 @@
+steps:
+- script: |
+    docker run -t -v $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf
+  displayName: 'Checkov Static Code Analysis'
