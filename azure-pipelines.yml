@@ -16,9 +16,6 @@ stages:
     - job: Checkov_Docker 
       steps:
       - template: templates/checkov.yml
-
-  - stage: Scan
-    jobs:
     - job: TFSec_Docker 
       steps:
       - template: templates/tfsec.yml
