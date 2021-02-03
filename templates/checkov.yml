@@ -4,7 +4,14 @@ steps:
     docker pull bridgecrew/checkov
     docker run -t -v $(System.DefaultWorkingDirectory):/tf bridgecrew/checkov --directory /tf --output junitxml > $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
   displayName: 'Checkov Static Code Analysis'
-          
+  
+- script: |
+    sed -i '$d' $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+    sed -i '$d' $(System.DefaultWorkingDirectory)/CheckovReport/Checkov-Report.xml
+  displayName: 'Removing the last 2 lines from the Checkov Report'
+  name: CheckovReportCleanup
+  condition: always()
+  
 - task: PublishTestResults@2
   displayName: Publish Checkov Test Results
   condition: succeededorFailed()
