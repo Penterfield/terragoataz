@@ -1,0 +1,18 @@
+steps:
+- bash: |
+    mkdir TerrascanReport
+    docker pull accurics/terrascan:latest
+    docker run --rm -t -v $(System.DefaultWorkingDirectory):/src accurics/terrascan ./src --format JUnit > $(System.DefaultWorkingDirectory)/TerrascanReport/junit.xml
+  displayName: TFSec Static Code Analysis
+  
+- task: PublishTestResults@2
+  displayName: Publish Terrascan Test Results
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/junit.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/TerrascanReport'
+    mergeTestResults: false
+    failTaskOnFailedTests: false
+    publishRunAttachments: true
+  
