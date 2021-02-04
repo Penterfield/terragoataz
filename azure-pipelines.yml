@@ -19,5 +19,8 @@ stages:
     - job: TFSec_Docker 
       steps:
       - template: templates/tfsec.yml
+    - job:
+      steps:
+      - template: templates/terrascan.yml
       
     
