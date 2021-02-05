@@ -16,7 +16,7 @@ steps:
 - script: |
     snyk config set api=$(SNYK_TOKEN)
     snyk iac test --severity-threshold=medium --json > snyk_iac_results.json
-    node_modules/.bin/jsonjunit --json snyk_iac_results.json --junit snyk_iac_results.xml
+    jsonjunit --json snyk_iac_results.json --junit snyk_iac_results.xml
   displayName: Snyk IaC Security Scan
 
 - task: PublishTestResults@2
