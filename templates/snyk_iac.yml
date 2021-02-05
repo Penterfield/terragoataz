@@ -10,8 +10,6 @@ steps:
 
 - script: |
     snyk config set api=$(SNYK_TOKEN)
-
-- bash: |
     snyk iac test
 
 
