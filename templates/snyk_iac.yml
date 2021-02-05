@@ -27,7 +27,6 @@ steps:
     mergeTestResults: true
     failTaskOnFailedTests: false
     testRunTitle: 'Snyk IaC Vulnerabilities'
-  condition: 'always()' 
    
 
  
