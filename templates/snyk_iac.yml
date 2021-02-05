@@ -9,14 +9,14 @@ steps:
   displayName: Install Snyk CLI
 
 - script: |
-    apt install python3-pip
+    python -m pip install --upgrade pip
     pip install cucumber-json-to-junit-xml
-  displayName: Install Json and Junit
+  displayName: Install dependencies
 
 - script: |
     snyk config set api=$(SNYK_TOKEN)
     snyk iac test --severity-threshold=medium --json > snyk_iac_results.json
-    json_to_junit snyk_iac_results.json snyk_iac_results.xml
+    sudo json_to_junit snyk_iac_results.json snyk_iac_results.xml
   displayName: Snyk IaC Security Scan
 
 - task: PublishTestResults@2
