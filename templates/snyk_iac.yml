@@ -2,15 +2,12 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
+    serviceConnectionEndpoint: 'Snyk'
   displayName: Install NodeJS
 
 - script: |
     npm install -g snyk
   displayName: Install Snyk CLI
-    
-- task: addserviceconnection@0
-  inputs:
-    serviceConnectionEndpoint: 'Snyk'
 
 - bash: |
     snyk iac test
