@@ -10,9 +10,8 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'Snyk'
 
-- bash: |
-    mkdir snyk
-    snyk iac test --severity-threshold=high --json-file-output=snyk/iac-results.json
+- script: |
+    snyk iac test --severity-threshold=high --json-file-output=iac-results.json
     exitCode=$?
     [[ $exitCode = 0 ]] && state="success" || state="failure"
     echo "##vso[task.setvariable variable=SnykScaState;]$state"
