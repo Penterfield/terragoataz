@@ -9,6 +9,7 @@ steps:
   displayName: Install Snyk CLI
 
 - script: |
+    apt install python3-pip
     pip install cucumber-json-to-junit-xml
   displayName: Install Json and Junit
 
