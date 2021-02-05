@@ -6,6 +6,9 @@ trigger:
 # pr:
 # - checkov
 
+variables:
+  SNYK_TOKEN: $(Snyk-Token)
+
 pool:
   vmImage: 'ubuntu-latest'
   
