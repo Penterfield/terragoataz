@@ -9,12 +9,13 @@ steps:
   displayName: 'Snyk IaC Security Scan'
   inputs:
     serviceConnectionEndpoint: 'Snyk'
-    bash: |
-      mkdir snyk
-      snyk iac test --severity-threshold=high --json-file-output=snyk/iac-results.json
-      exitCode=$?
-      [[ $exitCode = 0 ]] && state="success" || state="failure"
-      echo "##vso[task.setvariable variable=SnykScaState;]$state"
-      exit $exitCode
+
+- bash: |
+    mkdir snyk
+    snyk iac test --severity-threshold=high --json-file-output=snyk/iac-results.json
+    exitCode=$?
+    [[ $exitCode = 0 ]] && state="success" || state="failure"
+    echo "##vso[task.setvariable variable=SnykScaState;]$state"
+    exit $exitCode
 
 
