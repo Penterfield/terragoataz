@@ -4,14 +4,15 @@ steps:
     versionSpec: '10.x'
   displayName: Install NodeJS
 
-
 - script: |
     npm install -g snyk
   displayName: Install Snyk CLI
-
-- task: SnykSecurityIacScan@0
-  displayName: 'Snyk IaC Security Scan'
+    
+- task: addserviceconnection@0
   inputs:
     serviceConnectionEndpoint: 'Snyk'
-    script: |
-      snyk test
+
+- bash: |
+    snyk iac test
+
+
