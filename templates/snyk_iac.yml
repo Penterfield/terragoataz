@@ -1,27 +1,11 @@
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: Install NodeJS
-
 - script: |
     npm install -g snyk
   displayName: Install Snyk CLI
 
 - script: |
     snyk config set api=$(SNYK_TOKEN)
-    snyk iac test --format template --template "@templates/junit.tpl" -o junit-report.xml
-  displayName: Snyc IaC Scan      
-
-- task: PublishTestResults@2
-  displayName: "Snyk critical and high risk issues"
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/junit-report.xml'
-    mergeTestResults: true
-    failTaskOnFailedTests: false
-    testRunTitle: 'Snyk IaC Vulnerabilities'
-  condition: 'always()'
+    snyk iac test
    
 
 
