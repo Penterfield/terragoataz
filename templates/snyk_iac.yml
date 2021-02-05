@@ -10,7 +10,8 @@ steps:
 
 - script: |
     snyk config set api=$(SNYK_TOKEN)
-    snyk iac test --severity-threshold=medium
+    snyk iac test --severity-threshold=medium --json
+  displayName: Snyk IaC Security Scan
    
 
  
