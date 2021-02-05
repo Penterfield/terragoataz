@@ -10,6 +10,18 @@ steps:
 
 - script: |
     snyk config set api=$(SNYK_TOKEN)
-    snyk iac test
+    snyk iac test --severity HIGH,CRITICAL --format template --template "@templates/junit.tpl" -o junit-report-high-crit.xml
+  displayName: Snyc IaC Scan      
+
+- task: PublishTestResults@2
+  displayName: "Snyk critical and high risk issues"
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/junit-report-high-crit.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: false
+    testRunTitle: 'Snyk IaC - Critical and High Vulnerabilities'
+  condition: 'always()'
+   
 
 
