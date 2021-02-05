@@ -13,14 +13,14 @@ stages:
 
   - stage: Scan
     jobs:
-    - job: Checkov_Docker 
+    - job: Checkov
       steps:
       - template: templates/checkov.yml
-    - job: TFSec_Docker 
+    - job: TFSec
       steps:
       - template: templates/tfsec.yml
-    - job:
+    - job: Snyk_IaC
       steps:
-      - template: templates/terrascan.yml
+      - template: templates/snyk_iac.yml
       
     
