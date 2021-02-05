@@ -9,14 +9,25 @@ steps:
   displayName: Install Snyk CLI
 
 - script: |
+    pip install cucumber-json-to-junit-xml
+  displayName: Install Json and Junit
+
+- script: |
     snyk config set api=$(SNYK_TOKEN)
-    snyk iac test --severity-threshold=medium --json
+    snyk iac test --severity-threshold=medium --json > snyk_iac_results.json
+    json_to_junit snyk_iac_results.json snyk_iac_results.xml
   displayName: Snyk IaC Security Scan
- 
+
 - task: PublishTestResults@2
+  displayName: Publish Snyk IaC Test Results
+  condition: succeededOrFailed()
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/snyk_iac_results.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: false
+    testRunTitle: 'Snyk IaC Vulnerabilities'
+  condition: 'always()' 
    
 
  
