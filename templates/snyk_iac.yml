@@ -12,6 +12,11 @@ steps:
     snyk config set api=$(SNYK_TOKEN)
     snyk iac test --severity-threshold=medium --json
   displayName: Snyk IaC Security Scan
+ 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/TEST-*.xml'
    
 
  
