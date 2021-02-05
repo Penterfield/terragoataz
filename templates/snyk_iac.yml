@@ -1,13 +1,9 @@
 steps:
-- task: NodeTool@0
+- task: Npm@1
+  displayName: 'npm install'
   inputs:
-    versionSpec: '10.x'
-  displayName: Install NodeJS
-
-- script: |
-    npm install
-    npm test
-  displayName: NPM Install and Test
+    workingDir: .
+    verbose: false
 
 - task: SnykSecurityScan@0
   displayName: 'Snyk IaC Security Scan'
