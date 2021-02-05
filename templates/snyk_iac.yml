@@ -9,7 +9,7 @@ steps:
   displayName: 'Snyk IaC Security Scan'
   inputs:
     serviceConnectionEndpoint: 'Snyk'
-    script: |
+    bash: |
       mkdir snyk
       snyk iac test --severity-threshold=high --json-file-output=snyk/iac-results.json
       exitCode=$?
