@@ -9,26 +9,12 @@ steps:
   displayName: Install Snyk CLI
 
 - script: |
-    npm install --save-dev jsonjunit
-    npm install --dev
-  displayName: Install dependencies
-
-- script: |
-    mkdir jsonjunit
     snyk config set api=$(SNYK_TOKEN)
-    snyk iac test --severity-threshold=medium --json > snyk_iac_results.json
-    node_modules/.bin/jsonjunit --json snyk_iac_results.json --junit snyk_iac_results.xml
-  displayName: Snyk IaC Security Scan
+  displayName: Snyk Authentication
+  
+- script: |
+    snyk iac test --severity-threshold=medium 
+  displayName: Snyk IaC Security Scan 
 
-- task: PublishTestResults@2
-  displayName: Publish Snyk IaC Test Results
-  condition: succeededOrFailed()
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/snyk_iac_results.xml'
-    mergeTestResults: true
-    failTaskOnFailedTests: false
-    testRunTitle: 'Snyk IaC Vulnerabilities'
-   
 
  
