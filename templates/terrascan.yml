@@ -7,7 +7,7 @@ steps:
 
 - bash: |
     # terrascan scan -t azure -i terraform
-    pwd
+    ls
     # workingDirectory: $(System.DefaultWorkingDirectory)/terraform/azure
   displayName: 'Run Terrascan'   
  
