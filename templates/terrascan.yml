@@ -5,8 +5,8 @@ steps:
     sudo install terrascan /usr/local/bin    
   displayName: 'Install Terrascan'
 
-- script: |
-    terrascan scan -t azure -i terraform
+- bash: |
+    # terrascan scan -t azure -i terraform
     pwd
     # workingDirectory: $(System.DefaultWorkingDirectory)/terraform/azure
   displayName: 'Run Terrascan'   
