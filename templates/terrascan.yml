@@ -6,9 +6,8 @@ steps:
   displayName: 'Install Terrascan'
 
 - bash: |
-    # terrascan scan -t azure -i terraform
-    ls
-    # workingDirectory: $(System.DefaultWorkingDirectory)/terraform/azure
+    cd terraform/azure
+    terrascan scan -t azure
   displayName: 'Run Terrascan'   
  
   
