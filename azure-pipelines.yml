@@ -1,10 +1,7 @@
 # azure-pipelines.yml
 
-trigger: none
-# - master
-
-pr:
-  - master
+trigger: 
+- master
 
 variables:
   SNYK_TOKEN: $(Snyk-Token)
