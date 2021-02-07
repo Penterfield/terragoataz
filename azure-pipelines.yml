@@ -1,6 +1,6 @@
 # azure-pipelines.yml
 
-trigger: 
+pr:
 - master
 
 variables:
