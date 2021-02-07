@@ -7,17 +7,7 @@ steps:
 
 - bash: |
     cd terraform/azure
-    terrascan scan -t azure --format template --template "@templates/junit.tpl" -o junit-report.xml
+    terrascan scan -t azure
   displayName: 'Run Terrascan'   
-
-- task: PublishTestResults@2
-  displayName: "Terrascan Issues"
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/junit-report.xml'
-    mergeTestResults: true
-    failTaskOnFailedTests: false
-    testRunTitle: 'Terrascan Vulnerabilities'
-  condition: 'always()'
  
   
