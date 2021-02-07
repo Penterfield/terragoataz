@@ -6,7 +6,8 @@ steps:
   displayName: 'Install Terrascan'
 
 - script: |
-    terrascan scan -t azure $(terraformWorkingDirectory)
+    cd $(terraformWorkingDirectory)
+    terrascan scan -t azure 
   displayName: 'Run Terrascan'   
  
   
