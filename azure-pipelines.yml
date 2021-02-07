@@ -4,7 +4,8 @@ trigger:
 - master
 
 variables:
-  SNYK_TOKEN: $(Snyk-Token)
+  snyk_token: $(Snyk-Token)
+  terraformWorkingDirectory: '$(System.DefaultWorkingDirectory)/terraform/azure'
 
 pool:
   vmImage: 'ubuntu-latest'

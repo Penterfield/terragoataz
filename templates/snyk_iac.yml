@@ -9,7 +9,7 @@ steps:
   displayName: Install Snyk CLI
 
 - script: |
-    snyk config set api=$(SNYK_TOKEN)
+    snyk config set api=$(snyk_token)
   displayName: Snyk Authentication
   
 - script: |
