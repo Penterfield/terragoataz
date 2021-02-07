@@ -1,7 +1,4 @@
-# azure-pipelines.yml
-
 trigger: none
-# - master
 
 pr:
   - master
